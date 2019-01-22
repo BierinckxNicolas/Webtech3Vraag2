@@ -25,9 +25,9 @@ app.get('/', (req, res) => {
  
  // List all products
  app.get('/list', (req, res) => {
-   db.collection('products').find().toArray((err, result) => {
+   db.collection('inhaal').find().toArray((err, result) => {
      if (err) return console.log(err)
-     res.render('list.ejs', { products: result })
+     res.render('list.ejs', { inhaal: result })
    })
  })
  
@@ -47,4 +47,3 @@ app.get('/', (req, res) => {
 
 
 
-var d = new Date();
