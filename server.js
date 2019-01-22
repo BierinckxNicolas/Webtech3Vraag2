@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient
 
 var db;
+var mysort = { reason: 1 };
 
 MongoClient.connect('mongodb://localhost:27017/examen', (err, database) => {
   if (err) return console.log(err)
@@ -25,7 +26,7 @@ app.get('/', (req, res) => {
  
  // List all products
  app.get('/list', (req, res) => {
-   db.collection('inhaal').find().toArray((err, result) => {
+   db.collection('inhaal').find().sort(mysort).toArray((err, result) => {
      if (err) return console.log(err)
      res.render('list.ejs', { inhaal: result })
    })
@@ -43,7 +44,4 @@ app.get('/', (req, res) => {
       res.redirect('/list')
    })
  })
-
-
-
 
